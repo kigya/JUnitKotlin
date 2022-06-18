@@ -1,8 +1,8 @@
 package data_classes
 
-import com.natpryce.hamkrest.assertion.assertThat
-import com.natpryce.hamkrest.closeTo
-import com.natpryce.hamkrest.isA
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.closeTo
+import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -32,7 +32,7 @@ internal class ProductTest {
         val (name, price, onSell) = Product(name = "baseball", price = 10.0)
         assertAll(
             { assertEquals("baseball", name) },
-            { assertThat(price, isA(closeTo(10.0, 0.01))) },
+            { assertThat(price, `is`(closeTo(10.0, 0.01))) },
             { assertFalse(onSell) }
         )
     }
@@ -43,7 +43,7 @@ internal class ProductTest {
         val p2 = p1.copy(price = 12.0)
         assertAll(
             { assertEquals("baseball", p2.name) },
-            { assertThat(p2.price, isA(closeTo(12.0, 0.01))) },
+            { assertThat(p2.price, `is`(closeTo(12.0, 0.01))) },
             { assertFalse(p2.onSale) }
         )
     }
