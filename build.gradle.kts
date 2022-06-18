@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("org.http4k:http4k-testing-hamkrest:4.26.0.0")
 }
 
 tasks.test {
@@ -22,3 +23,4 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
+

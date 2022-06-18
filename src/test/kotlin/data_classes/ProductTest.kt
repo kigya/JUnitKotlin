@@ -1,8 +1,12 @@
 package data_classes
 
+import com.natpryce.hamkrest.assertion.assertThat
+import com.natpryce.hamkrest.closeTo
+import com.natpryce.hamkrest.isA
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+
 
 internal class ProductTest {
     @Test
@@ -26,10 +30,21 @@ internal class ProductTest {
     @Test
     fun `check destructuring declarations`() {
         val (name, price, onSell) = Product(name = "baseball", price = 10.0)
-        org.junit.jupiter.api.assertAll(
+        assertAll(
             { assertEquals("baseball", name) },
-            { assertEquals(10.0, price) },
-            { assertEquals(false, onSell) }
+            { assertThat(price, isA(closeTo(10.0, 0.01))) },
+            { assertFalse(onSell) }
+        )
+    }
+
+    @Test
+    fun `change price using copy`() {
+        val p1 = Product("baseball", 10.0)
+        val p2 = p1.copy(price = 12.0)
+        assertAll(
+            { assertEquals("baseball", p2.name) },
+            { assertThat(p2.price, isA(closeTo(12.0, 0.01))) },
+            { assertFalse(p2.onSale) }
         )
     }
 }
