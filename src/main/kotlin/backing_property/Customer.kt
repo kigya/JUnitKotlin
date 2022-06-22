@@ -18,5 +18,6 @@ class Customer(val name: String) {
             "Convinced them to use Kotlin",
             "Sold training class. Sweet."
         ).also { println("Loaded messages") }
+
 }
 
